@@ -11,10 +11,14 @@ gem 'simple_form'
 gem 'sqlite3'
 gem 'uglifier', '>= 1.3.0'
 
-group :development, :test do
-  gem 'pry-byebug'
-  gem 'pry-rails'
-  gem 'quiet_assets'
-  gem 'spring'
-  gem 'web-console', '~> 2.0'
+group :development do
+  gem 'letter_opener_web'
+
+  group :test do
+    gem 'pry-byebug'
+    gem 'pry-rails'
+    gem 'quiet_assets'
+    gem 'spring'
+    gem 'web-console', '~> 2.0'
+  end
 end

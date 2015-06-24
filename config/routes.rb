@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resources :users, only: %i(new create) do
     resources :password_resets, only: %i(edit update)
   end
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: '/lo'
+  end
 end
