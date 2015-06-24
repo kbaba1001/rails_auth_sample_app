@@ -14,18 +14,17 @@ class Users::PasswordResetsController < Users::ApplicationController
   end
 
   def edit
-    @password_reset = PasswordReset.find_by!(token: params[:id], user_id: params[:user_id])
-    @user = @password_reset.user
+    @password_reset = PasswordReset.find_by!(token: params[:id])
   end
 
   def update
-    @password_reset = PasswordReset.find_by!(token: params[:id], user_id: params[:user_id])
-    @user = @password_reset.user
+    @password_reset = PasswordReset.find_by!(token: params[:id])
+    user = @password_reset.user
 
-    reset_password(@user, params[:password_reset][:password])
+    reset_password(user, params[:password_reset][:password])
 
-    if @user.save
-      sign_in @user
+    if user.save
+      sign_in user
       redirect_to root_path
     else
       render :edit

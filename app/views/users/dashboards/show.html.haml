@@ -1,3 +1,4 @@
 %h1 ログイン後マイページ
-- if signed_in?
-  = link_to 'ログアウト', session_path, method: :delete
+
+= link_to 'ログアウト', session_path, method: :delete
+-# = link_to 'パスワード変更', edit_user_password_reset_path()
