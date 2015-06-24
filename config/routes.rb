@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'dashboards#show'
+
   resource :session, only: %i(new create destroy)
   resources :password_resets, only: %i(new create)
 
