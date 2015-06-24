@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.1.0'
+gem 'hamlit'
 gem 'jquery-rails'
 gem 'monban'
 gem 'monban-generators'
 gem 'rails', '4.2.1'
 gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
 gem 'sqlite3'
 gem 'uglifier', '>= 1.3.0'
 
