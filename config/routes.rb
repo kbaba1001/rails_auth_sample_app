@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  root to: 'dashboards#show'
+  scope module: 'users' do
+    root to: 'dashboards#show'
 
-  resource :session, only: %i(new create destroy)
-  resources :password_resets, only: %i(new create)
+    resource :session, only: %i(new create destroy)
+    resources :password_resets, only: %i(new create)
 
-  resources :users, only: %i(new create) do
-    resources :password_resets, only: %i(edit update)
+    resources :users, only: %i(new create) do
+      resources :password_resets, only: %i(edit update)
+    end
   end
 
   if Rails.env.development?
