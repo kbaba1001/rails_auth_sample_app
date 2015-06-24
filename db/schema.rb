@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20150624152122) do
 
   create_table "password_resets", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
