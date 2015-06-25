@@ -12,11 +12,8 @@ Rails.application.routes.draw do
 
   scope module: 'users' do
     resource :session, only: %i(new create destroy)
-    resources :user_tokens, only: %i(new create)
-
-    resources :users, only: %i(new create), shallow: true do
-      resources :user_tokens, only: %i(edit update), param: :token
-    end
+    resources :user_tokens, only: %i(new create edit update), param: :token
+    resources :users, only: %i(new create)
   end
 
   if Rails.env.development?
