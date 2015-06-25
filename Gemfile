@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.1.0'
-gem 'hamlit'
+gem 'hamlit-rails'
 gem 'jquery-rails'
 gem 'monban'
 gem 'monban-generators'
