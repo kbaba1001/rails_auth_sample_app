@@ -1,9 +1,9 @@
-class PasswordResetMailer < ActionMailer::Base
+class UserTokenMailer < ActionMailer::Base
   default from: "noreply@example.com" # NOTE: You'll want to change this
 
-  def change_password(password_reset)
-    @password_reset = password_reset
-    @user = password_reset.user
+  def change_password(user_token)
+    @user_token = user_token
+    @user = user_token.user
 
     mail(
       to: @user.email,

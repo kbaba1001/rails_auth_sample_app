@@ -1,6 +1,6 @@
-class CreatePasswordResets < ActiveRecord::Migration
+class CreateUserTokens < ActiveRecord::Migration
   def change
-    create_table :password_resets do |t|
+    create_table :user_tokens do |t|
       t.belongs_to :user, index: true, null: false
       t.string :token
 

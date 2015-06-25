@@ -1,4 +1,4 @@
-class PasswordReset < ActiveRecord::Base
+class UserToken < ActiveRecord::Base
   belongs_to :user
   before_create :generate_unique_token
   delegate :email, to: :user, allow_nil: true
@@ -11,7 +11,7 @@ class PasswordReset < ActiveRecord::Base
 
   def generate_unique_token
     self.token = generate_token
-    while PasswordReset.exists?(token: self.token)
+    while UserToken.exists?(token: self.token)
       self.token = generate_token
     end
   end
