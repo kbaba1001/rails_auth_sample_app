@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   scope module: 'users' do
     resource :session, only: %i(new create destroy)
-    resources :user_tokens, only: %i(new create edit update), param: :token
+    resources :password_resets, only: %i(new create edit update), param: :token
     resources :users, only: %i(new create)
   end
 

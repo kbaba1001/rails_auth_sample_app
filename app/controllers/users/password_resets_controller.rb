@@ -1,4 +1,4 @@
-class Users::UserTokensController < Users::ApplicationController
+class Users::PasswordResetsController < Users::ApplicationController
   skip_before_action :require_login, only: [:new, :create, :edit, :update]
 
   def new
