@@ -2,14 +2,14 @@ class Users::UsersController < Users::ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
   def new
-    @user = User.new
+    @form = UserForm.new(User.new)
   end
 
   def create
-    @user = sign_up(user_params)
+    @form = sign_up(user_params)
 
-    if @user.persisted?
-      sign_in(@user)
+    if @form.errors.empty?
+      sign_in(@form)
       redirect_to root_path
     else
       render :new

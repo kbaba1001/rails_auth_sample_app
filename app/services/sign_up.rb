@@ -5,9 +5,16 @@ module Services
     end
 
     def perform
-      User.new(@user_params) {|user|
-        user.update(password_digest: Monban.hash_token(@user_params[:password])) if user.valid?
-      }
+      form = UserForm.new(User.new)
+
+      if form.validate(@user_params)
+        form.save do |attributes|
+          user = form.model
+          user.update(password_digest: Monban.hash_token(attributes[:password]))
+        end
+      end
+
+      form
     end
   end
 end
