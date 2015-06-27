@@ -1,0 +1,7 @@
+%h1 パスワード変更
+= simple_form_for @form, url: user_password_path(current_user) do |f|
+  = f.input :current_password
+  = f.input :new_password
+  = f.input :new_password_confirmation
+
+  = f.button :submit
