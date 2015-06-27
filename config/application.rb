@@ -33,8 +33,8 @@ module RailsAuthSample
     config.active_record.raise_in_transactional_callbacks = true
 
     config.autoload_paths += [
-      Rails.root.join('app', 'presenters'),
+      Dir[Rails.root.join('app', 'presenters', '**')],
       Rails.root.join('app', 'services')
-    ]
+    ].flatten
   end
 end
