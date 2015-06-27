@@ -8,7 +8,7 @@ class Users::UsersController < Users::ApplicationController
   def create
     @user = sign_up(user_params)
 
-    if @user.valid?
+    if @user.persisted?
       sign_in(@user)
       redirect_to root_path
     else

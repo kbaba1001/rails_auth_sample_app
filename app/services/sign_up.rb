@@ -5,7 +5,9 @@ module Services
     end
 
     def perform
-      User.create(@user_params.to_hash)
+      User.new(@user_params) {|user|
+        user.update(password_digest: Monban.hash_token(@user_params[:password])) if user.valid?
+      }
     end
   end
 end
