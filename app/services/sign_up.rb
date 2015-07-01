@@ -1,13 +1,13 @@
 module Services
   class SignUp
-    def initialize(user_params)
-      @user_params = user_params
+    def initialize(users_sign_up_params)
+      @users_sign_up_params = users_sign_up_params
     end
 
     def perform
-      form = UserForm.new(User.new)
+      form = Users::SignUpForm.new(User.new)
 
-      if form.validate(@user_params)
+      if form.validate(@users_sign_up_params)
         form.save do |attributes|
           user = form.model
           user.update(password_digest: Monban.hash_token(attributes[:password]))
