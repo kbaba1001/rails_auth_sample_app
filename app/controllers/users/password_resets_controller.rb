@@ -14,16 +14,19 @@ class Users::PasswordResetsController < Users::ApplicationController
   end
 
   def edit
-    @user_token = UserToken.find_by!(token: params[:token])
+    @form = UserTokens::PasswordResetForm.new(UserToken.find_by!(token: params[:token]))
   end
 
   def update
-    @user_token = UserToken.find_by!(token: params[:token])
-    user = @user_token.user
+    @form = UserTokens::PasswordResetForm.new(UserToken.find_by!(token: params[:token]))
 
-    reset_password(user, params[:user_token][:password])
+    if @form.validate(params[:user_tokens_password_reset])
+      user = @form.model.user
 
-    if user.save
+      @form.save do |attributes|
+        user.update(password_digest: Monban.hash_token(params[:user_tokens_password_reset][:password]))
+      end
+
       sign_in user
       redirect_to root_path
     else

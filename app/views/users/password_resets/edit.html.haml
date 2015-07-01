@@ -1,9 +1,7 @@
 .password-reset
   %h2 Change your password
   %p Your password has been reset. Choose a new password below.
-  = form_for @user_token, url: password_reset_path(@user_token) do |form|
-    .password-field
-      = form.label :password
-      = form.password_field :password
-    .submit-field
-      = form.submit 'Update Password'
+  = simple_form_for @form, url: password_reset_path(@form.model) do |f|
+    = f.input :password
+    = f.input :password_confirmation
+    = f.submit :submit
