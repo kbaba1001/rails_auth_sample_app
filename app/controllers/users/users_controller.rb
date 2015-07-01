@@ -9,6 +9,9 @@ class Users::UsersController < Users::ApplicationController
     @form = sign_up(params[:users_sign_up])
 
     if @form.errors.empty?
+      # token付きのemailを送る
+      # メール中の url の宛先は /first_login/xxxxxxxx ?
+
       sign_in(@form)
       redirect_to root_path
     else
