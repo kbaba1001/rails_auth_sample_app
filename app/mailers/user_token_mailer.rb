@@ -10,4 +10,14 @@ class UserTokenMailer < ActionMailer::Base
       subject: 'Change your password'
     )
   end
+
+  def signup(user_token)
+    @user_token = user_token
+    @user = user_token.user
+
+    mail(
+      to: @user.email,
+      subject: '[sign up] confirm email'
+    )
+  end
 end
