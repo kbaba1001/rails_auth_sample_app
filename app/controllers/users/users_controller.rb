@@ -12,10 +12,10 @@ class Users::UsersController < Users::ApplicationController
   end
 
   def edit
-    render text: 'hi'
   end
 
   def update
+
   end
 end
 
