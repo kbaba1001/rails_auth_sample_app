@@ -15,7 +15,15 @@ class Users::UsersController < Users::ApplicationController
   end
 
   def update
+    token = UserToken.find_by!(token: params[:token])
 
+    # token を失効させる処理
+
+    user = token.user
+    # user のステータスを更新する処理
+
+    sign_in user
+    redirect_to root_path
   end
 end
 
