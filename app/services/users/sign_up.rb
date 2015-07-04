@@ -14,12 +14,7 @@ module Users
 
             user.update!(password_digest: Monban.hash_token(attributes[:password]))
 
-            # TODO 適切な場所に切り出す
-            user.transitions.create!(
-              to_state: UserStateMachine.initial_state,
-              sort_key: 0,
-              most_recent: true
-            )
+            UserStateMachine.new(user).write_initial_state!
 
             user_token = UserToken.create!(user: user)
             UserTokenMailer.signup(user_token).deliver

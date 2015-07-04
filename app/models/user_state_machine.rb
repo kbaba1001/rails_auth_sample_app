@@ -13,4 +13,12 @@ class UserStateMachine
   def current_state
     super.inquiry
   end
+
+  def write_initial_state!
+    object.transitions.create!(
+      to_state: UserStateMachine.initial_state,
+      sort_key: 0,
+      most_recent: true
+    )
+  end
 end
