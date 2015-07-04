@@ -34,7 +34,7 @@ module RailsAuthSample
 
     config.autoload_paths += [
       Dir[Rails.root.join('app', 'presenters', '**')],
-      Rails.root.join('app', 'services')
+      Dir[Rails.root.join('app', 'services', '**')],
     ].flatten
   end
 end

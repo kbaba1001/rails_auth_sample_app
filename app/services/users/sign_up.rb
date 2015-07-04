@@ -1,4 +1,4 @@
-module Services
+module Users
   class SignUp
     def initialize(users_sign_up_params)
       @users_sign_up_params = users_sign_up_params
