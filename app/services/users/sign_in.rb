@@ -6,9 +6,7 @@ module Users
     end
 
     def perform
-      state_machine = UserStateMachine.new(@user)
-
-      @warden.set_user(@user) if state_machine.current_state.active?
+      @warden.set_user(@user) if Users::StateMachine.new(@user).current_state.active?
     end
   end
 end

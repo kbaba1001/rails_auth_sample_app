@@ -20,8 +20,7 @@ class Users::UsersController < Users::ApplicationController
     user = token.user
 
     ActiveRecord::Base.transaction do
-      state_machine = UserStateMachine.new(user)
-      state_machine.transition_to!(:active)
+      Users::StateMachine.new(user).transition_to!(:active)
 
       token.destroy!
     end

@@ -14,7 +14,7 @@ module Users
 
             user.update!(password_digest: Monban.hash_token(attributes[:password]))
 
-            UserStateMachine.new(user).write_initial_state!
+            Users::StateMachine.new(user).write_initial_state!
 
             user_token = UserToken.create!(user: user)
             UserTokenMailer.signup(user_token).deliver
