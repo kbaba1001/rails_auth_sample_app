@@ -8,7 +8,7 @@ module Users
     transition from: :pending, to: :active
 
     def initialize(user)
-      super(user, transition_class: UserTransition, association_name: :transitions)
+      super(user, transition_class: UserTransition)
     end
 
     def current_state
@@ -16,7 +16,7 @@ module Users
     end
 
     def write_initial_state!
-      object.transitions.create!(
+      object.user_transitions.create!(
         to_state: self.class.initial_state,
         sort_key: 0,
         most_recent: true
