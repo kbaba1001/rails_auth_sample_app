@@ -1,11 +1,11 @@
 module Users
   class PasswordsController < ApplicationController
     def edit
-      @form = PasswordForm.new(User.find(params[:user_id]))
+      @form = PasswordForm.new(User.find(current_user))
     end
 
     def update
-      @form = PasswordForm.new(User.find(params[:user_id]))
+      @form = PasswordForm.new(User.find(current_user))
 
       if @form.validate(params[:users_password])
         @form.save do |attributes|

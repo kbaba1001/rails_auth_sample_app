@@ -1,0 +1,6 @@
+%h1 メール送信完了
+
+= link_to 'トップページに戻る', root_path
+
+- if Rails.env.development?
+  = link_to 'メールを見る', '/lo'

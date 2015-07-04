@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624152122) do
+ActiveRecord::Schema.define(version: 20150704051423) do
 
   create_table "user_tokens", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -22,11 +22,25 @@ ActiveRecord::Schema.define(version: 20150624152122) do
 
   add_index "user_tokens", ["user_id"], name: "index_user_tokens_on_user_id"
 
+  create_table "user_transitions", force: :cascade do |t|
+    t.string   "to_state",                   null: false
+    t.text     "metadata",    default: "{}"
+    t.integer  "sort_key",                   null: false
+    t.integer  "user_id",                    null: false
+    t.boolean  "most_recent",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "user_transitions", ["user_id", "most_recent"], name: "index_user_transitions_parent_most_recent", unique: true, where: "most_recent"
+  add_index "user_transitions", ["user_id", "sort_key"], name: "index_user_transitions_parent_sort", unique: true
+
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false
     t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "status"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
