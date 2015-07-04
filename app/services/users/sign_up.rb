@@ -11,10 +11,15 @@ module Users
         ActiveRecord::Base.transaction do
           form.save do |attributes|
             user = form.model
-            # TODO emailアドレスの確認ができるまではこのアカウントで sing in できなくする。
-            # roll というか status カラムを作って、pandit とかで認可したい
+
             user.update!(password_digest: Monban.hash_token(attributes[:password]))
-            # TODO 初期状態の投入
+
+            # TODO 適切な場所に切り出す
+            user.transitions.create!(
+              to_state: UserStateMachine.initial_state,
+              sort_key: 0,
+              most_recent: true
+            )
 
             user_token = UserToken.create!(user: user)
             UserTokenMailer.signup(user_token).deliver
