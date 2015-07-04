@@ -18,11 +18,15 @@ class Users::UsersController < Users::ApplicationController
     token = UserToken.find_by!(token: params[:token])
 
     user = token.user
-    # user のステータスを更新する処理
 
-    token.destroy!
+    ActiveRecord::Base.transaction do
+      state_machine = UserStateMachine.new(user, transition_class: UserTransition, association_name: :transitions)
+      state_machine.transition_to!(:active)
+
+      token.destroy!
+    end
+
     sign_in user
     redirect_to root_path
   end
 end
-
