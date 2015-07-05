@@ -6,15 +6,14 @@ class Admin::ApplicationController < ApplicationController
   include Monban::ControllerHelpers
   helper_method :current_operator
 
-  # SignIn で scope
-
   undef :current_user
   def current_operator
-    @current_operator ||= warden.user(:operator)
+    # FIXME なぜか User が入ってしまうようだ...。なんで?
+    @current_operator = warden.user(scope: :operator)
   end
 
   def signed_in?
-    warden.user(:operator)
+    warden.user(scope: :operator)
   end
 
   def require_login
