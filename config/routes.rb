@@ -17,6 +17,14 @@ Rails.application.routes.draw do
     resources :users, shallow: true, only: %i(new create edit update), param: :token
   end
 
+  namespace :admin do
+    root 'sessions#new'
+
+    resource :session, only: %i(new create destroy)
+
+    resource :dashboard, only: %i(show)
+  end
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/lo'
   end
