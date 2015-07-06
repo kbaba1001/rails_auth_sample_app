@@ -4,23 +4,39 @@ class Admin::ApplicationController < ApplicationController
   protect_from_forgery with: :exception
 
   include Monban::ControllerHelpers
-  helper_method :current_operator
 
-  undef :current_user
-  def current_operator
-    # FIXME なぜか User が入ってしまうようだ...。なんで?
-    @current_operator = warden.user(scope: :operator)
-  end
+  prepend_before_action {
+    Monban.configure do |config|
+      config.user_class = 'Operator'
+
+      config.sign_up_service = Monban::Services::SignUp
+      config.sign_in_service = Monban::Services::SignIn
+    end
+  }
 
   def signed_in?
-    warden.user(scope: :operator)
+    operator = warden.user
+    operator.class == 'Operator' ? operator : nil
   end
 
-  def require_login
-    unless signed_in?
-      redirect_to admin_root_path
-    end
-  end
+
+  # helper_method :current_operator
+
+  # undef :current_user
+  # def current_operator
+  #   # FIXME なぜか User が入ってしまうようだ...。なんで?
+  #   @current_operator = warden.user(scope: :operator)
+  # end
+
+  # def signed_in?
+  #   warden.user(scope: :operator)
+  # end
+
+  # def require_login
+  #   unless signed_in?
+  #     redirect_to admin_root_path
+  #   end
+  # end
 
   before_action :require_login
 end
