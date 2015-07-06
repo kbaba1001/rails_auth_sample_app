@@ -1,8 +1,4 @@
 class Admin::ApplicationController < ApplicationController
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-
   include Monban::ControllerHelpers
 
   prepend_before_action {
@@ -11,12 +7,14 @@ class Admin::ApplicationController < ApplicationController
 
       config.sign_up_service = Monban::Services::SignUp
       config.sign_in_service = Monban::Services::SignIn
+
+      config.no_login_redirect = admin_root_path
     end
   }
 
   def signed_in?
     operator = warden.user
-    operator.class == 'Operator' ? operator : nil
+    operator.class.name == 'Operator' ? operator : nil
   end
 
 

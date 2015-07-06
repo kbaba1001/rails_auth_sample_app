@@ -1,13 +1,9 @@
 class Users::ApplicationController < ApplicationController
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-
   include Monban::ControllerHelpers
 
   def signed_in?
     user = warden.user
-    user.class == 'User' ? user : nil
+    user.class.name == 'User' ? user : nil
   end
 
   before_action :require_login

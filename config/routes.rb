@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   scope module: 'users' do
-    resource :session, only: %i(new create destroy)
+    resources :sessions, only: %i(new create destroy)
     resources :password_resets, only: %i(new create edit update), param: :token
     resource :password, only: %i(edit update)
     resources :users, shallow: true, only: %i(new create edit update), param: :token
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'sessions#new'
 
-    resource :session, only: %i(new create destroy)
+    resources :sessions, only: %i(new create destroy)
 
     resource :dashboard, only: %i(show)
   end
