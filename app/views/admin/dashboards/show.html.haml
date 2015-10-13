@@ -1,4 +1,5 @@
 %h1 管理画面のダッシュボード
 
-= current_user
-= link_to 'ログアウト', admin_sessions_path, method: :delete
+
+%p= "current_user: #{current_user.class}"
+%p= link_to 'ログアウト', admin_sessions_path, method: :delete

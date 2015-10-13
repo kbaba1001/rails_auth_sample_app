@@ -1,5 +1,7 @@
 %h1 ログイン後マイページ
 
+%p= "current_user: #{current_user.class}"
+
 %ul
   %li= link_to 'ログアウト', sessions_path, method: :delete
   %li= link_to 'パスワード変更', edit_password_path
