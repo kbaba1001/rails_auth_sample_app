@@ -18,9 +18,12 @@ group :development do
   gem 'letter_opener_web'
 
   group :test do
+    gem 'capybara'
+    gem 'database_rewinder'
     gem 'pry-byebug'
     gem 'pry-rails'
     gem 'quiet_assets'
+    gem 'rspec-rails', '~> 3.0'
     gem 'web-console', '~> 2.0'
   end
 end
