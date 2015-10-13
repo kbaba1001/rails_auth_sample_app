@@ -27,5 +27,13 @@ feature "Signing in" do
 
     expect(page).to have_content '管理画面のダッシュボード'
     expect(page).to have_content 'current_user: Operator'
+
+    # ユーザーマイページにアクセスする
+    visit '/users/1'
+    expect(page).to have_content 'ユーザーマイページ'
+
+    # 管理者マイページにアクセスする
+    visit '/admin/operators/1'
+    expect(page).to have_content '管理者マイページ'
   end
 end
