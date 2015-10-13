@@ -28,4 +28,8 @@ class Users::UsersController < Users::ApplicationController
   rescue
     redirect_to root_path, alert: 'ERROR'
   end
+
+  def show
+    @user = current_user
+  end
 end

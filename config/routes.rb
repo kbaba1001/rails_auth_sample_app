@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :password_resets, only: %i(new create edit update), param: :token
     resource :password, only: %i(edit update)
     resources :users, shallow: true, only: %i(new create edit update), param: :token
+    resources :users, only: %i(show)
   end
 
   namespace :admin do
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
     resources :sessions, only: %i(new create destroy)
 
     resource :dashboard, only: %i(show)
+
+    resources :operators, only: %i(show)
   end
 
   if Rails.env.development?

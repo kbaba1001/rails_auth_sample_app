@@ -1,0 +1,5 @@
+%h1 ユーザーマイページ
+
+%ul
+- @user.attributes.each do |k,v|
+  %li= "#{k}: #{v}"
