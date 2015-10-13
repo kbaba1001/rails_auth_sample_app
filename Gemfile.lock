@@ -1,3 +1,11 @@
+PATH
+  remote: ../monban
+  specs:
+    monban (0.2.1)
+      bcrypt
+      rails
+      warden
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -102,10 +110,6 @@ GEM
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
-    monban (0.2.1)
-      bcrypt
-      rails
-      warden
     monban-generators (0.0.4)
       monban (>= 0.0.12)
     multi_json (1.11.1)
@@ -225,7 +229,7 @@ DEPENDENCIES
   hamlit-rails
   jquery-rails
   letter_opener_web
-  monban
+  monban!
   monban-generators
   pg
   pry-byebug
