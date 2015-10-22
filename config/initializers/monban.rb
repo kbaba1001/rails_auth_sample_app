@@ -1,4 +1,4 @@
-Monban.configure(:user) do |config|
+Monban.configure do |config|
   config.sign_up_service = Users::SignUp
   config.sign_in_service = Users::SignIn
 
@@ -11,5 +11,5 @@ Monban.configure(:operator) do |config|
   config.sign_up_service = Monban::Services::SignUp
   config.sign_in_service = Monban::Services::SignIn
 
-  config.no_login_redirect = admin_root_path
+  config.no_login_redirect = {controller: 'admin/sessions', action: 'new'}
 end
