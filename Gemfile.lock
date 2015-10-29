@@ -1,5 +1,5 @@
 PATH
-  remote: ../monban
+  remote: ./monban
   specs:
     monban (0.2.1)
       bcrypt

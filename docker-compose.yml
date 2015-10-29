@@ -11,3 +11,10 @@ web:
     - "3000:3000"
   links:
     - db
+  volumes_from:
+    - bundle
+
+bundle:
+  image: busybox
+  volumes:
+    - /bundle
