@@ -8,6 +8,9 @@ WORKDIR $APP_HOME
 
 ADD Gemfile* $APP_HOME/
 
+# for local monban
+ADD monban /myapp/monban/
+
 ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
   BUNDLE_JOBS=2 \
   BUNDLE_PATH=/bundle
